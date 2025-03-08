@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+    tools{
+        jdk 'jdk17'
+        maven 'Maven'
+    }
+    environment{
+        SCANNER_HOME=tool 'SonarQube Scanner'
+    }
+    stages {
+        stage('Git Checkout') {
+            steps {
+                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/jaiswaladi246/Ekart.git'
+            }
+        }
+        stage('Compile') {
+            steps {
+               bat "mvn clean compile"
+            }
+        }
+        stage('Sonarque Analysis') {
+            steps {
+               bat """
+    %SCANNER_HOME%\\bin\\sonar-scanner ^
+        -Dsonar.url=http://localhost:9000/ ^
+        -Dsonar.login=squ_1ecc80d08421077aea0acd274d656bbc1918ec1d ^
+        -Dsonar.projectName=Ekart ^
+        -Dsonar.java.binaries=. ^
+        -Dsonar.projectKey=Ekart
+"""
+            }
+        }
+    }
+}
