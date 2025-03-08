@@ -1,1 +1,2 @@
-"# ThirdPartyAPIProj" 
+This Java application integrates a third-party API to enhance its functionality. The app communicates with the third party API to fetch external data and display it to users. The integration includes secure API authentication, error handling, and efficient data processing. Using technologies like Java, Maven, and Spring Boot (optional), the project demonstrates how to make HTTP requests to external services, parse JSON responses, and use the retrieved data in the application’s core logic.
+
